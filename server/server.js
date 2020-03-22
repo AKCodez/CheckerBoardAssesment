@@ -4,9 +4,9 @@ const cloudinary = require('cloudinary')
 const formData = require('express-form-data')
 const cors = require('cors')
 const { CLIENT_ORIGIN } = require('./config')
-
+const port = 8080
 const app = express()
-console.log('cloudname', process.env.CLOUD_NAME)
+
 cloudinary.config({ 
   cloud_name: process.env.CLOUD_NAME, 
   api_key: process.env.API_KEY, 
@@ -32,4 +32,4 @@ app.post('/image-upload', (req, res) => {
     .catch((err) => res.status(400).json(err))
 })
 
-app.listen(process.env.PORT || 8080, () => console.log('👍'))
+app.listen(process.env.PORT || 8080, () => console.log(`server is listening on port ${port} 👍`))

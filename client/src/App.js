@@ -5,9 +5,11 @@ import Images from './Images'
 import Buttons from './Buttons'
 import WakeUp from './WakeUp'
 import PlanFive from './PlanFive'
-
+import PlanFour from './PlanFour'
+import PlanThree from './PlanThree'
 import { API_URL } from './config'
 import './App.css'
+import Complies from './Complies'
 
 const toastColor = { 
   background: '#505050', 
@@ -20,7 +22,10 @@ export default class App extends Component {
     loading: true,
     uploading: false,
     images: [],
-    plan: false
+    planE: false,
+    planD: false,
+    planC: false,
+    complies: false
   }
 
   componentDidMount() {
@@ -78,10 +83,34 @@ export default class App extends Component {
       return res.json()
     })
     .then(images => {
+console.log(images)
       if(images[0].width === 802 && images[0].height === 697){
+        this.setState({
+          planE: true,
+          loading:false,
+          uploading: false
+        })
+      }
+      else if(images[0].width === 736 && images[0].height === 451){
         console.log('ok')
         this.setState({
-          plan: true,
+          complies: true,
+          loading:false,
+          uploading: false
+        })
+      }
+      else if(images[0].width === 600 && images[0].height === 599){
+        console.log('ok')
+        this.setState({
+          planC: true,
+          loading:false,
+          uploading: false
+        })
+      }
+      else if(images[0].width === 480 && images[0].height === 360){
+        console.log('ok')
+        this.setState({
+          planD: true,
           loading:false,
           uploading: false
         })
@@ -116,10 +145,7 @@ export default class App extends Component {
   }
   
   render() {
-    const { loading, uploading, images, plan } = this.state
-    // if(images[0]){
-    //   console.log(images[0].width)
-    // }
+    const { loading, uploading, images, planE,planD,planC, complies} = this.state
     const content = () => {
 
       switch(true) {
@@ -133,8 +159,14 @@ export default class App extends Component {
                     removeImage={this.removeImage} 
                     onError={this.onError}
                    />
-            case plan:
+            case planE:
               return  <PlanFive/>
+              case planD: 
+              return <PlanFour/>
+              case planC: 
+              return <PlanThree/>
+              case complies: 
+              return <Complies/>
         default:
           return <Buttons onChange={this.onChange} />
       }
