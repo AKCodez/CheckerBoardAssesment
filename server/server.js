@@ -6,7 +6,7 @@ const cors = require('cors')
 const { CLIENT_ORIGIN } = require('./config')
 
 const app = express()
-
+console.log('cloudname', process.env.CLOUD_NAME)
 cloudinary.config({ 
   cloud_name: process.env.CLOUD_NAME, 
   api_key: process.env.API_KEY, 
@@ -14,7 +14,7 @@ cloudinary.config({
 })
   
 app.use(cors({ 
-  origin: CLIENT_ORIGIN 
+  origin: CLIENT_ORIGIN
 })) 
 
 app.use(formData.parse())

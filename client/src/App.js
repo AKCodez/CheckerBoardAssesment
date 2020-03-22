@@ -4,7 +4,7 @@ import Spinner from './Spinner'
 import Images from './Images'
 import Buttons from './Buttons'
 import WakeUp from './WakeUp'
-import Footer from './Footer'
+
 import { API_URL } from './config'
 import './App.css'
 
@@ -22,7 +22,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    fetch(`${API_URL}/wake-up`)
+    fetch(`http://localhost:8080/wake-up`)
       .then(res => {
         if (res.ok) {
           return this.setState({ loading: false })  
@@ -65,7 +65,7 @@ export default class App extends Component {
 
     this.setState({ uploading: true })
 
-    fetch(`${API_URL}/image-upload`, {
+    fetch(`http://localhost:8080/image-upload`, {
       method: 'POST',
       body: formData
     })
@@ -128,7 +128,7 @@ export default class App extends Component {
         <div className='buttons'>
           {content()}
         </div>
-        <Footer />
+
       </div>
     )
   }
