@@ -4,6 +4,7 @@ import Spinner from './Spinner'
 import Images from './Images'
 import Buttons from './Buttons'
 import WakeUp from './WakeUp'
+import PlanFive from './PlanFive'
 
 import { API_URL } from './config'
 import './App.css'
@@ -18,7 +19,8 @@ export default class App extends Component {
   state = {
     loading: true,
     uploading: false,
-    images: []
+    images: [],
+    plan: false
   }
 
   componentDidMount() {
@@ -76,10 +78,20 @@ export default class App extends Component {
       return res.json()
     })
     .then(images => {
-      this.setState({
-        uploading: false, 
-        images
-      })
+      if(images[0].width === 802 && images[0].height === 697){
+        console.log('ok')
+        this.setState({
+          plan: true,
+          loading:false,
+          uploading: false
+        })
+      }
+      else {
+        this.setState({
+          uploading: false,
+          images
+        })
+      }
     })
     .catch(err => {
       err.json().then(e => {
@@ -87,6 +99,7 @@ export default class App extends Component {
         this.setState({ uploading: false })
       })
     })
+    
   }
 
   filter = id => {
@@ -103,20 +116,25 @@ export default class App extends Component {
   }
   
   render() {
-    const { loading, uploading, images } = this.state
-    
+    const { loading, uploading, images, plan } = this.state
+    // if(images[0]){
+    //   console.log(images[0].width)
+    // }
     const content = () => {
+
       switch(true) {
         case loading:
           return <WakeUp />
         case uploading:
-          return <Spinner />
-        case images.length > 0:
-          return <Images 
-                  images={images} 
-                  removeImage={this.removeImage} 
-                  onError={this.onError}
-                 />
+          return <Spinner />  
+          case images.length > 0:
+            return <Images 
+                    images={images} 
+                    removeImage={this.removeImage} 
+                    onError={this.onError}
+                   />
+            case plan:
+              return  <PlanFive/>
         default:
           return <Buttons onChange={this.onChange} />
       }
