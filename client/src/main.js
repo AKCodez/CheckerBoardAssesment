@@ -56,6 +56,8 @@ class Main extends React.Component {
                       switch(true) {
                         case cells <= this.state.size * 2:
                           return  <Player1 color={(i % 2) + (i1 % 2)} />
+                        case cells >= this.state.size * this.state.size - this.state.size * 2 + 1:
+                          return <Player2 color={(i % 2) + (i1 % 2)} />
                       }
                       return <Cell num={cells} size={this.state.size} color={(i % 2) + (i1 % 2)}/>
 
