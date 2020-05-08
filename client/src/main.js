@@ -1,11 +1,17 @@
 import React from 'react';
 import Cell from './cell';
+import Player1 from './player1'
+import Player2 from './player2'
 
 class Main extends React.Component {
   constructor() {
     super();
-    this.state = {size : 0};
+    this.state = {
+      size : 0,
+      num: 0
+    };
     this.handleChange = this.handleChange.bind(this);
+    this.increment = this.increment.bind(this)
   }
 
   handleChange(e) {
@@ -13,12 +19,21 @@ class Main extends React.Component {
         this.setState({size: e.target.value});
     //   }
   }
+  increment(){
+    this.setState({
+      num: this.state.num + 1
+    })
+    console.log(this.state.num, 'number state')
+  }
 
   render() {
+      let cells = 0
       let arr = [];
+      let array = []
       for (let i = 0; i < this.state.size; i++) {
-          arr.push(1);
+        arr.push(1);
       }
+
     return (
       <div>
       <div style={{display: 'inline-block'}}>
@@ -37,7 +52,13 @@ class Main extends React.Component {
                   this.state.size ? 
                   (
                     arr.map((elem1, i1) => {
-                      return <Cell color={(i % 2) + (i1 % 2)}/>
+                      cells += 1
+                      switch(true) {
+                        case cells <= this.state.size * 2:
+                          return  <Player1 color={(i % 2) + (i1 % 2)} />
+                      }
+                      return <Cell num={cells} size={this.state.size} color={(i % 2) + (i1 % 2)}/>
+
                     })
                   ) 
                   : 

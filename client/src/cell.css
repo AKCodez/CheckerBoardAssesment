@@ -11,3 +11,21 @@
   height: 100px;
   border: 1px solid black;
 }
+
+.redDot {
+  height: 50px;
+  width: 50px;
+  background-color: red;
+  border-radius: 50%;
+  position:relative; 
+  right:-22px;
+}
+.blueDot {
+  height: 50px;
+  width: 50px;
+  background-color: blue;
+  border-radius: 50%;
+  position:relative; 
+  right:-22px;
+
+}

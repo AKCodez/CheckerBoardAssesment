@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import './cell.css';
 
-function Cell(props) {
+function Player1 (props) {
     //if props.num 
 console.log(props.num)
     return (
@@ -11,13 +11,13 @@ console.log(props.num)
         (
 
             <td key={props.color} className='black'>
-
+                <div className='redDot'></div>
             </td>
         ) 
         : 
         (
             <td key={props.color} className="white">
-
+                <div className='redDot'></div>
             </td>
         )
     }
@@ -26,4 +26,4 @@ console.log(props.num)
     );
 }
 
-export default Cell;
+export default Player1;
