@@ -3,7 +3,7 @@ import './cell.css';
 
 function Cell(props) {
     //if props.num 
-console.log(props.num)
+
     return (
         <td>
         {
