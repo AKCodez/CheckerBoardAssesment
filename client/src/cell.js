@@ -5,7 +5,7 @@ function Cell(props) {
     return (
         <td>
         {
-        props.color ? 
+        props.color === 1? 
         (
             <td key={props.color} className='black'></td>
         ) 
