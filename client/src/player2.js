@@ -23,8 +23,13 @@ function Player2(props) {
             value="option2"
           />
           color
-          <br/>
-                <input onClick={() => setShape(!shape)} type="radio" value="option2" />shape
+          <br />
+          <input
+            onClick={() => setShape(!shape)}
+            type="radio"
+            value="option2"
+          />
+          shape
         </td>
       ) : (
         <td key={props.color} className="white">
@@ -41,8 +46,13 @@ function Player2(props) {
             value="option2"
           />
           color
-          <br/>
-                <input onClick={() => setShape(!shape)} type="radio" value="option2" />shape
+          <br />
+          <input
+            onClick={() => setShape(!shape)}
+            type="radio"
+            value="option2"
+          />
+          shape
         </td>
       )}
     </td>
